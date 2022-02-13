@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aprende FlexBox</title>
+</head>
+<body>
+
+<h1>Aprende FlexBox</h1>
+
+<h2>Propiedades para el Padre (contenedor flexible)</h2>
+<img src="assets/01-container.svg">
+<h2>Propiedades para los Niños (artículos flexibles)</h2>
+<img src="assets/02-items.svg">
+
+<!-- Display -->
+<h3>display</h3>
+<p>Esto define un contenedor flexible; en línea o bloque dependiendo del valor dado. Permite un contexto flexible para todos sus hijos directos.</p>
+<pre>
+.container {
+    display: flex; /* or inline-flex */
+}
+</pre>
+<p>Tenga en cuenta que las columnas CSS no tienen efecto en un contenedor flexible.</p>
+
+<!-- Flex-direction -->
+<h3>flex-direction</h3>
+<img src="assets/flex-direction.svg">
+<p>Esto establece el eje principal, definiendo así la dirección en que se colocan los artículos flexibles en el contenedor flexible. Flexbox es (aparte del envoltorio opcional) un concepto de diseño de una sola dirección. Piense en los elementos flexibles como dispuestos principalmente en filas horizontales o columnas verticales.</p>
+<pre>
+.container {
+    flex-direction: row | row-reverse | column | column-reverse;
+}    
+</pre>
+<ul>
+    <li>row (default): de izquierda a derecha; de derecha a izquierda.</li>
+    <li>row-reverse: de derecha a izquierda; de izquierda a derecha</li>
+    <li>column: La misma que la fila pero de arriba a abajo</li>
+    <li>column-reverse: igual que la fila inversa pero de abajo hacia arriba</li>
+</ul>
+
+<!-- Flex-wrap -->
+<h3>flex-wrap</h3>
+<img src="assets/flex-wrap.svg">
+<p>De forma predeterminada, todos los elementos flexibles intentarán encajar en una línea. Puede cambiar eso y permitir que los elementos se ajusten según sea necesario con esta propiedad.</p>
+<pre>
+.container {
+    flex-wrap: nowrap | wrap | wrap-reverse;
+}    
+</pre>
+<ul>
+    <li>nowrap (default): todos los elementos flexibles estarán en una línea</li>
+    <li>wrap: Los elementos flexibles se ajustarán a varias líneas, de arriba a abajo.</li>
+    <li>wrap-reverse: los elementos flexibles se ajustarán a varias líneas de abajo hacia arriba.</li>
+</ul>
+
+<!-- Flex-flow -->
+<h3>flex-flow</h3>
+<p>Esta es una abreviatura de las propiedades flex-direction y flex-wrap, que juntas definen los ejes principal y transversal del contenedor flexible. El valor predeterminado es fila nowrap.</p>
+<pre>
+.container {
+    flex-flow: column wrap;
+}    
+</pre>
+
+<!-- Justify-Content -->
+<h3>justify-content</h3>
+<img src="assets/justify-content.svg">
+<p>Esto define la alineación a lo largo del eje principal. Ayuda a distribuir el espacio libre adicional sobrante cuando todos los elementos flexibles de una línea son inflexibles o son flexibles pero han alcanzado su tamaño máximo. También ejerce cierto control sobre la alineación de los elementos cuando desbordan la línea.</p>
+<pre>
+.container {
+    justify-content: flex-start | flex-end | center | space-between | space-around | space-evenly | start | end | left | right ... + safe | unsafe;
+}    
+</pre>
+<ul>
+    <li>flex-start (default): los artículos se empaquetan hacia el inicio de la dirección flexible.</li>
+    <li>flex-end: los artículos se empaquetan hacia el final de la dirección de flexión.</li>
+    <li>start: los elementos se empaquetan hacia el comienzo de la dirección del modo de escritura.</li>
+    <li>end: los elementos se empaquetan hacia el final de la dirección del modo de escritura.</li>
+    <li>left: los artículos se empaquetan hacia el borde izquierdo del contenedor, a menos que no tenga sentido con la dirección flexible, entonces se comporta como un inicio.</li>
+    <li>right: los artículos se empaquetan hacia el borde derecho del contenedor, a menos que no tenga sentido con la dirección flexible, entonces se comporta como el final.</li>
+    <li>center: los artículos están centrados a lo largo de la línea</li>
+    <li>space-between: los artículos se distribuyen uniformemente en la línea; el primer elemento está en la línea de inicio, el último elemento en la línea final</li>
+    <li>space-around: los artículos se distribuyen uniformemente en la línea con el mismo espacio alrededor de ellos. Tenga en cuenta que visualmente los espacios no son iguales, ya que todos los elementos tienen el mismo espacio en ambos lados. El primer elemento tendrá una unidad de espacio contra el borde del contenedor, pero dos unidades de espacio entre el siguiente elemento porque ese siguiente elemento tiene su propio espacio que se aplica.</li>
+    <li>space-evenly: los elementos se distribuyen de modo que el espacio entre dos elementos cualesquiera (y el espacio hasta los bordes) sea igual.</li>
+</ul>
+<p>
+    Tenga en cuenta que el soporte del navegador para estos valores está matizado. Por ejemplo, el espacio entre nunca recibió soporte de algunas versiones de Edge, y el inicio/fin/izquierda/derecha aún no están en Chrome. <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/justify-content" target="__blank">MDN tiene gráficos detallados</a>. Los valores más seguros son flex-start, flex-end y center.
+    También hay dos palabras clave adicionales que puede combinar con estos valores: seguro e inseguro. El uso seguro garantiza que, independientemente de cómo haga este tipo de posicionamiento, no puede empujar un elemento de modo que se represente fuera de la pantalla (por ejemplo, fuera de la parte superior) de tal manera que el contenido no se pueda desplazar también (llamado "pérdida de datos" ).
+</p>
+
+<!-- Align-Items -->
+<h3>align-items</h3>
+<img src="assets/align-items.svg">
+<p>
+    Esto define el comportamiento predeterminado de cómo se distribuyen los elementos flexibles a lo largo del eje transversal en la línea actual. Piense en ello como la versión de contenido justificado para el eje transversal (perpendicular al eje principal).
+</p>
+<pre>
+.container {
+    align-items: stretch | flex-start | flex-end | center | baseline | first baseline | last baseline | start | end | self-start | self-end + ... safe | unsafe;
+}    
+</pre>
+<ul>
+    <li>stretch (default): estirar para llenar el contenedor (todavía respetar min-width/max-width)</li>
+    <li>flex-start / start / self-start: los elementos se colocan al comienzo del eje transversal. La diferencia entre estos es sutil y se trata de respetar las reglas de dirección flexible o las reglas del modo de escritura.</li>
+    <li>flex-end / end / self-end: los elementos se colocan al final del eje transversal. La diferencia nuevamente es sutil y se trata de respetar las reglas de dirección flexible frente a las reglas del modo de escritura.</li>
+    <li>center: los elementos están centrados en el eje transversal</li>
+    <li>baseline: items are aligned such as their baselines align</li>
+</ul>
+
+<!-- Align-Content -->
+<h3>align-content</h3>
+<img src="assets/align-content.svg">
+<p>
+    Esto alinea las líneas de un contenedor flexible dentro cuando hay espacio adicional en el eje transversal, de forma similar a como el contenido justificado alinea elementos individuales dentro del eje principal.
+</p>
+<p>
+    Nota: esta propiedad solo tiene efecto en contenedores flexibles de varias líneas, donde flex-wrap se establece en wrap o wrap-reverse). Un contenedor flexible de una sola línea (es decir, donde el ajuste flexible se establece en su valor predeterminado, sin ajuste) no reflejará el contenido de alineación.
+</p>
+<pre>
+.container {
+    align-content: flex-start | flex-end | center | space-between | space-around | space-evenly | stretch | start | end | baseline | first baseline | last baseline + ... safe | unsafe;
+}    
+</pre>
+<ul>
+    <li>normal (default): los elementos se empaquetan en su posición predeterminada como si no se hubiera establecido ningún valor.</li>
+    <li>flex-start / start: artículos embalados al inicio del contenedor. El inicio flexible (más compatible) respeta la dirección flexible, mientras que el inicio respeta la dirección del modo de escritura.</li>
+    <li>flex-end / end: artículos empacados hasta el final del contenedor. El extremo flexible (más compatible) respeta la dirección flexible, mientras que el extremo respeta la dirección del modo de escritura.</li>
+    <li>center: elementos centrados en el contenedor</li>
+    <li>space-between: artículos distribuidos uniformemente; la primera línea está al principio del contenedor mientras que la última está al final</li>
+    <li>space-around: artículos distribuidos uniformemente con el mismo espacio alrededor de cada línea</li>
+    <li>space-evenly: los artículos están distribuidos uniformemente con el mismo espacio alrededor de ellos</li>
+    <li>stretch: las líneas se estiran para ocupar el espacio restante</li>
+</ul>
+
+<!-- Gap, Row-gap, Column-gap -->
+<h3>gap, row-gap, column-gap</h3>
+<img src="assets/gap-1.svg">
+<p>La propiedad gap controla explícitamente el espacio entre elementos flexibles. Se aplica ese espacio solo entre elementos que no están en los bordes exteriores.</p>
+<pre>
+.container {
+    display: flex;
+    ...
+    gap: 10px;
+    gap: 10px 20px; /* row-gap column gap */
+    row-gap: 10px;
+    column-gap: 20px;
+}
+</pre>
+<p>
+    El comportamiento podría considerarse como un canalón mínimo, como si el canalón fuera más grande de alguna manera (debido a algo como justificar contenido: espacio intermedio;) entonces la brecha solo tendrá efecto si ese espacio termina siendo más pequeño.
+
+    No es exclusivamente para flexbox, la brecha también funciona en la cuadrícula y el diseño de varias columnas.
+</p>
+
+<!-- Order -->
+<h3>order</h3>
+<img src="assets/order.svg">
+<p>
+    De forma predeterminada, los elementos flexibles se presentan en el orden de origen. Sin embargo, la propiedad order controla el orden en que aparecen en el contenedor flexible.
+</p>
+<pre>
+.item {
+    order: 5; /* default is 0 */
+}    
+</pre>
+<p>Los artículos con el mismo pedido vuelven al orden de origen.</p>
+
+<!-- Flex-Grow -->
+<h3>flex-grow</h3>
+<img src="assets/flex-grow.svg">
+<p>
+    Esto define la capacidad de crecimiento de un elemento flexible si es necesario. Acepta un valor sin unidades que sirve como proporción. Determina qué cantidad de espacio disponible dentro del contenedor flexible debe ocupar el artículo.
+
+    Si todos los elementos tienen el crecimiento flexible establecido en 1, el espacio restante en el contenedor se distribuirá por igual a todos los niños. Si uno de los hijos tiene un valor de 2, ese hijo ocuparía el doble de espacio que cualquiera de los otros (o lo intentará, al menos).
+</p>
+<pre>
+.item {
+    flex-grow: 4; /* default 0 */
+}    
+</pre>
+<p>Los números negativos no son válidos.</p>
+
+<!-- Flex-Shrink -->
+<h3>flex-shrink</h3>
+<p>Esto define la capacidad de que un elemento flexible se encoja si es necesario.</p>
+<pre>
+.item {
+    flex-shrink: 3; /* default 1 */
+}
+</pre>
+<p>Los números negativos no son válidos.</p>
+
+<!-- flex-basis -->
+<h3>Flex-Basis</h3>
+<p>
+    Esto define el tamaño predeterminado de un elemento antes de que se distribuya el espacio restante. Puede ser una longitud (por ejemplo, 20 %, 5 rem, etc.) o una palabra clave. La palabra clave auto significa "mirar mi propiedad de ancho o alto" (que se hizo temporalmente por la palabra clave de tamaño principal hasta que quedó obsoleta). La palabra clave de contenido significa "dimensionarlo según el contenido del elemento": esta palabra clave aún no es compatible, por lo que es difícil de probar y más difícil saber qué hacen sus hermanos contenido máximo, contenido mínimo y contenido adecuado.
+</p>
+<pre>
+.item {
+    flex-basis:  | auto; /* default auto */
+}
+</pre>
+<p>
+    Si se establece en 0, el espacio adicional alrededor del contenido no se tiene en cuenta. Si se establece en automático, el espacio adicional se distribuye en función de su valor de crecimiento flexible. <a href="https://www.w3.org/TR/css-flexbox-1/images/rel-vs-abs-flex.svg" target="__blank">Vea este gráfico.</a>
+</p>
+
+<!-- flex -->
+<h3>Flex</h3>
+<p>
+    Esta es la abreviatura de flex-grow, flex-shrink y flex-basis combinados. Los parámetros segundo y tercero (flex-shrink y flex-base) son opcionales. El valor predeterminado es 0 1 automático, pero si lo configura con un solo valor numérico, como flex: 5;, eso cambia la base flexible a 0%, por lo que es como configurar flex-grow: 5; contracción flexible: 1; base flexible: 0%;.
+</p>
+<pre>
+.item {
+    flex: none | [ <'flex-grow'> <'flex-shrink'>? || <'flex-basis'> ]
+}
+</pre>
+<p>Se recomienda utilizar esta propiedad abreviada en lugar de establecer las propiedades individuales. La taquigrafía establece los otros valores de forma inteligente.</p>
+
+<!-- Align-Self -->
+<h3>align-self</h3>
+<img src="assets/align-self.svg">
+<p>
+    Esto permite anular la alineación predeterminada (o la especificada por elementos de alineación) para elementos flexibles individuales.
+
+    Consulte la explicación de alineación de elementos para comprender los valores disponibles.
+</p>
+<pre>
+.item {
+    align-self: auto | flex-start | flex-end | center | baseline | stretch;
+}
+</pre>
+<p>Tenga en cuenta que float, clear y vertical-align no tienen efecto en un elemento flexible.</p>
+
+<!-- FIN -->
+</body>
+</html>
